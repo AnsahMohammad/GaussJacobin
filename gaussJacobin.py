@@ -2,23 +2,29 @@
 
 # eqs = int(input("Enter number of equations : "))
 # eqs_ = []
+# eqs = 3
+# eqs_ = [
+#     [10,1,2,10],
+#     [1,10,1,20],
+#     [1,1,20,13]
+# ]
 # for _ in range(eqs):
 #     k = list(map(int,input("enter the coefficient in (ax1+bx2=c) order : \n").split(" ")))
 #     eqs_.append(k)
 
-def display(arr):
-    fin = ""
-    k = 0
-    for each in arr[:-1]:
-        fin += "({})x{} + ".format(str(each),k)
-        k+=1
-    fin = fin[:-2]
-    fin += "= "+str(arr[-1])
-    print(fin)
+def display(eqs):
+    for arr in eqs:
+        fin = ""
+        k = 0
+        for each in arr[:-1]:
+            fin += "({})x{} + ".format(str(each),k)
+            k+=1
+        fin = fin[:-2]
+        fin += "= "+str(arr[-1])
+        print(fin)
 
 # print("Your equations are : ")
-# for each in eqs_:
-#     display(each)
+# display(eqs_)
 
 
 def __rearrange(arr):
@@ -78,6 +84,10 @@ def displaySol(sol):
 # displaySol(vars)
 
 def gaussJacobin(eqs_,iters):
+    if iters < 0:
+        raise ValueError("Iterations should be >= 0")
+
+    global vars
     eqs = len(eqs_)
     #re-arranging
     for _ in range(int(eqs/2)):
